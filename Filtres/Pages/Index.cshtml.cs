@@ -20,22 +20,11 @@ namespace Filtres.Pages
             _logger = logger;
         }
 
-        public override void OnPageHandlerSelected(PageHandlerSelectedContext pageContext)
-        {
-            int a = 40;
+        public override async Task OnPageHandlerExecutionAsync(PageHandlerExecutingContext context, PageHandlerExecutionDelegate next) 
+        { 
+        ViewData["ip"] = context.HttpContext.Connection.RemoteIpAddress; 
+        var resultContext = await next();
         }
-        public override void OnPageHandlerExecuting(PageHandlerExecutingContext
-       pageContext)
-        {
-            int a = 65;
-        }
-        public override void OnPageHandlerExecuted(PageHandlerExecutedContext pageContext)
-        {
-            int a = 23;
-        }
-        public void OnGet()
-        {
-            int a = 12;
-        }
+
     }
 }
