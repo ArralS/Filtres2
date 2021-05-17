@@ -20,10 +20,11 @@ namespace Filtres.Pages
             _logger = logger;
         }
 
-        public override async Task OnPageHandlerExecutionAsync(PageHandlerExecutingContext context, PageHandlerExecutionDelegate next) 
-        { 
-        ViewData["ip"] = context.HttpContext.Connection.RemoteIpAddress; 
-        var resultContext = await next();
+        public override async Task OnPageHandlerExecutionAsync(PageHandlerExecutingContext context, 
+        PageHandlerExecutionDelegate next) 
+        {
+            ViewData["FilterMessage"] = context.HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString(); 
+            var resultContext = await next();
         }
 
     }
